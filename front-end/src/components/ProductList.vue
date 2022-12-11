@@ -5,7 +5,9 @@
             <th scope="col">Ürün Adı</th>
             <th scope="col">Minimum Fiyat</th>
             <th scope="col">Maksimum Fiyat</th>
-            <th scope="col">Ürün Tedarikçisi</th>  
+            <th scope="col">Ürün Tedarikçisi</th>
+            <th scope="col">Kategori</th>  
+
           </tr>
         </thead>
         <tbody>
@@ -14,6 +16,10 @@
             <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
             <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
             <td><input type="text" style="width:200px" placeholder="Tedarikçi"> </td>
+            <td><select name="category" id="category" >
+              <option value="Hepsi">Hepsi</option>
+              <option v-for="category in categories" value="{{category.name}}">{{category.name}}</option>
+            </select> </td>
             <div class="d-flex justify-content-end">
                 <button class="btn bg-primary text-white">Filtrele</button>
             </div>
@@ -94,6 +100,14 @@ export default {
             stockamount:6
         },
 
+      ],
+      categories : [
+        {
+          name: "Gıda"
+        },
+        {
+          name: "Temizlik"
+        }
       ]
     }
     

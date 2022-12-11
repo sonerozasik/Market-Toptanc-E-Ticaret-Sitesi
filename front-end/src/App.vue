@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-    <Navbar/>
+    <Navbar :isAuthenticated="isAuthenticated"
+      v-on:handleCart="isCartOpen = isCartOpen ? false : true"
+    />
     <RouterView 
-    v-on:loginResponse="loginResponse($event)"
+      v-on:loginResponse="loginResponse($event)"
+    />
+    <ShoppingCart v-if="isCartOpen" 
+      v-on:handleCart="isCartOpen = isCartOpen ? false : true" 
     />
   </div>
 
@@ -11,11 +16,19 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Swal from 'sweetalert2'
+import ShoppingCart from './components/ShoppingCart.vue'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      isAuthenticated:false,
+      isCartOpen:false
+    }
+  },
   components: {
-    Navbar
+    Navbar,
+    ShoppingCart
   },
   methods:{
     loginResponse(response) {
@@ -24,6 +37,7 @@ export default {
             this.username = response.username;
             this.succesMessage(response.message);
             this.$router.push("/supplier-list");
+            this.isAuthenticated=true;
         }
         else {
             this.errorMessage(response.message);
@@ -57,3 +71,10 @@ export default {
   }
 }
 </script>
+
+
+<style>
+  svg:hover{
+    cursor: pointer;
+  }
+</style>

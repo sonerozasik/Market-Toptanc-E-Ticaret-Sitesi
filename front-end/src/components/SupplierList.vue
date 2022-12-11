@@ -11,7 +11,7 @@
             <th scope="row">{{ supplier.name }}</th>
             <td>{{ supplier.description }}</td>
             <div class="d-flex justify-content-end">
-                <button class="btn bg-primary text-white">Ürünleri Gör!</button>
+                <button class="btn bg-primary text-white">Ürünleri Gör</button>
             </div>
           </tr>
         </tbody>

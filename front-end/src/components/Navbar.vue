@@ -1,17 +1,52 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/login">Giriş Yap</a>
+            <li class="nav-item active" v-if="!isAuthenticated">
+              <router-link class="nav-link" to="/login" >Giriş Yap</router-link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup">Üye Ol</a>
+            <li class="nav-item" v-if="!isAuthenticated">
+              <router-link class="nav-link" to="/signup" >Üye Ol</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated">
+              <router-link class="nav-link" to="/product-list" >Mağaza</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated">
+              <router-link class="nav-link" to="/supplier-list" >Tedarikçiler</router-link>
             </li>
           </ul>
+          <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated">
+            <BIconCart4 @click="cartHandler()" />
+          </div>
         </div>
       </nav>
 </template>
+
+<script>
+import { BIconCart4} from 'bootstrap-icons-vue';
+
+export default{
+  data(){
+    return{
+
+    }
+  },
+  props:{
+    isAuthenticated:Boolean,
+    isCartOpen:Boolean
+  },
+  components:{
+    BIconCart4,
+  },
+  methods:{
+    cartHandler(){
+      this.$emit("handleCart"); 
+    }
+  }
+}
+
+</script>
+
+<style>
+
+</style>
