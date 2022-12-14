@@ -12,7 +12,10 @@
               <router-link class="nav-link" to="/product-list" >Mağaza</router-link>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
-              <router-link class="nav-link" to="/supplier-list" >Tedarikçiler</router-link>
+              <router-link class="nav-link" to="/supplier-list" >Toptancılar</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated">
+              <router-link class="nav-link" to="/order-list" >Siparişlerim</router-link>
             </li>
           </ul>
           <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated">

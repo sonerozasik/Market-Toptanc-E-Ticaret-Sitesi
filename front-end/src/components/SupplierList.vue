@@ -3,13 +3,15 @@
         <thead>
           <tr >
             <th scope="col">Toptancı Adı</th>
-            <th scope="col">Toptancı Açıklaması</th>
+            <th scope="col">Şirket Adı</th>
+            <th scope="col">Şirket Adresi</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="supplier in suppliers">
-            <th scope="row">{{ supplier.name }}</th>
-            <td>{{ supplier.description }}</td>
+            <th scope="row">{{ supplier.namesurname }}</th>
+            <td>{{ supplier.companyname }}</td>
+            <td>{{ supplier.address }}</td>
             <div class="d-flex justify-content-end">
                 <button class="btn bg-primary text-white">Ürünleri Gör</button>
             </div>
@@ -24,7 +26,11 @@ export default {
     name: "SupplierList",
     data() {
       return {
-        suppliers: [{name:"Toptancı 1",description:"açıklama 1"},{name:"Toptancı 2",description:"açıklama 2"},{name:"Toptancı 3",description:"açıklama 3"}]
+        suppliers: [
+          {namesurname:"Ali Bakır",companyname:"Eti", address: "Tepebaşı/Eskişehir"},
+          {namesurname:"Veli Gümüş",companyname:"Ülker", address: "Osmangazi/Bursa"},
+          {namesurname:"Ahmet Demir",companyname:"Acord", address: "Gebze/Kocaeli"}
+        ]
       }
     },
     created() {

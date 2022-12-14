@@ -5,6 +5,8 @@
     />
     <RouterView 
       v-on:loginResponse="loginResponse($event)"
+      v-on:signupResponse="signupResponse($event)"
+
     />
     <ShoppingCart v-if="isCartOpen" 
       v-on:handleCart="isCartOpen = isCartOpen ? false : true" 

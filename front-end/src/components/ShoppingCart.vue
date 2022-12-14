@@ -1,12 +1,13 @@
 <template>
-    <div id="shoppingCart" class="card position-absolute top-50 start-50 translate-middle">
-      <h1 >Shopping Cart</h1>
+    <div id="shoppingCart" class="card position-absolute top-50 start-50 translate-middle p-4">
+      <h1 >Alışveriş Sepeti</h1>
         <BIconX class="fs-2 position-absolute top-0 end-0" @click="handleCart()"/>
+        <span>Ürün Adı - Ürün Miktarı - Ürün Fiyatı - Toplam Fiyat</span>
       <ul  class="list-group">
         <li v-for="item in cartItems" :key="item.id" class="list-group-item">
-            {{ item.name }} - {{ item.quantity }} - {{ item.price }}
+            {{ item.name }} - {{ item.quantity }} - {{ item.price }} - {{item.price*item.quantity}}
         </li>
-        <p>Toplam Tutar: {{ total }} TL</p>
+        <h4 class="text-center">Toplam Tutar: {{ total }} TL</h4>
       </ul>
       <button class="btn bg-primary col-6 mx-auto text-white">Siparişi Tamamla</button>
     </div>
@@ -21,9 +22,8 @@ import { BIconX } from 'bootstrap-icons-vue';
     data() {
       return {
         cartItems: [
-            { name: "Apple", quantity: 5, price: 0.99 },
-            { name: "Orange", quantity: 2, price: 0.49 },
-            { name: "Banana", quantity: 3, price: 0.29 }
+            { name: "Temizlik Bezi", quantity: 5, price: 299.00 },
+            { name: "Ülker Çikolata", quantity: 2, price: 100.00 }
         ],
       };
     },

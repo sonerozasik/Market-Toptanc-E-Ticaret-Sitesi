@@ -40,7 +40,7 @@ export default {
   },
   methods: {
    login(){
-        this.$emit('loginResponse',{message:"Successful Login!",succes:true});
+        this.$emit('loginResponse',{message:"Giriş Başarılı!",succes:true});
    }
   }
 }

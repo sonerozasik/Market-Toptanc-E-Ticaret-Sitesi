@@ -5,7 +5,7 @@
             <th scope="col">Ürün Adı</th>
             <th scope="col">Minimum Fiyat</th>
             <th scope="col">Maksimum Fiyat</th>
-            <th scope="col">Ürün Tedarikçisi</th>
+            <th scope="col">Ürün Toptancısı</th>
             <th scope="col">Kategori</th>  
 
           </tr>
@@ -15,7 +15,7 @@
             <td><input type="text" style="width:200px" placeholder="Ürün Adı"> </td>
             <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
             <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
-            <td><input type="text" style="width:200px" placeholder="Tedarikçi"> </td>
+            <td><input type="text" style="width:200px" placeholder="Toptancı"> </td>
             <td><select name="category" id="category" >
               <option value="Hepsi">Hepsi</option>
               <option v-for="category in categories" value="{{category.name}}">{{category.name}}</option>
@@ -34,7 +34,7 @@
           <th scope="col">Ürün Adı</th>
           <th scope="col">Fiyatı</th>
           <th scope="col">Birim Fiyatı</th>
-          <th scope="col">Tedarikçi</th>
+          <th scope="col">Toptancı</th>
           <th scope="col">Stok Türü</th>
           <th scope="col" >Miktar</th>
           <th scope="col"></th>
@@ -84,20 +84,20 @@ export default {
         },
         {
             id:3,
-            name:"Tuborg Gold",
-            price: 300.00,
-            supplier: "Tuborg",
+            name:"ACE Çamaşır Suyu",
+            price: 110.99,
+            supplier: "ACE",
             stocktype: "Adet",
-            stockamount:24
+            stockamount:6
 
         },
         {
             id:4,
-            name:"Absolute Vodka 50cl",
-            price: 1299.00,
-            supplier: "Absolute",
+            name:"Temizlik Bezi",
+            price: 299.00,
+            supplier: "Acord",
             stocktype: "Adet",
-            stockamount:6
+            stockamount:30
         },
 
       ],
