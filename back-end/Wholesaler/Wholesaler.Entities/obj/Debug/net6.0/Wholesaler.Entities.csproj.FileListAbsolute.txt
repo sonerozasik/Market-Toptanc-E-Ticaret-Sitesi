@@ -1,0 +1,15 @@
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\bin\Debug\net6.0\Wholesaler.Entities.deps.json
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\bin\Debug\net6.0\Wholesaler.Entities.dll
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\bin\Debug\net6.0\Wholesaler.Entities.pdb
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\bin\Debug\net6.0\Wholesaler.Shared.dll
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\bin\Debug\net6.0\Wholesaler.Shared.pdb
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.csproj.AssemblyReference.cache
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.AssemblyInfoInputs.cache
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.AssemblyInfo.cs
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.csproj.CoreCompileInputs.cache
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.csproj.CopyComplete
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.dll
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\refint\Wholesaler.Entities.dll
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\Wholesaler.Entities.pdb
+C:\Users\suley\source\repos\Wholesaler\Wholesaler.Entities\obj\Debug\net6.0\ref\Wholesaler.Entities.dll
