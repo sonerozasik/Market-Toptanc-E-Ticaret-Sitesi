@@ -1,0 +1,17 @@
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.DataAccess.deps.json
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.DataAccess.runtimeconfig.json
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.DataAccess.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.DataAccess.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.Entities.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\bin\Debug\net6.0\markettoptanci.Entities.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.csproj.CopyComplete
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\refint\markettoptanci.DataAccess.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\markettoptanci.DataAccess.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.DataAccess\obj\Debug\net6.0\ref\markettoptanci.DataAccess.dll

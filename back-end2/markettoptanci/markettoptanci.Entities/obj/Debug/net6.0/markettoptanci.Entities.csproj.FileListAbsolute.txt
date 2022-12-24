@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\bin\Debug\net6.0\markettoptanci.Entities.deps.json
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\bin\Debug\net6.0\markettoptanci.Entities.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\bin\Debug\net6.0\markettoptanci.Entities.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\refint\markettoptanci.Entities.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\markettoptanci.Entities.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Entities\obj\Debug\net6.0\ref\markettoptanci.Entities.dll

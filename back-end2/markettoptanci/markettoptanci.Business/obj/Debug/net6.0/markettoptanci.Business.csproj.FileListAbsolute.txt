@@ -1,0 +1,17 @@
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.Business.deps.json
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.Business.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.Business.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.DataAccess.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.Entities.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.DataAccess.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\bin\Debug\net6.0\markettoptanci.Entities.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.csproj.CopyComplete
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\refint\markettoptanci.Business.dll
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\markettoptanci.Business.pdb
+C:\Users\Administrator\source\repos\markettoptanci\markettoptanci.Business\obj\Debug\net6.0\ref\markettoptanci.Business.dll
