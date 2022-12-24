@@ -9,9 +9,9 @@
         </thead>
         <tbody>
           <tr v-for="supplier in suppliers">
-            <th scope="row">{{ supplier.namesurname }}</th>
-            <td>{{ supplier.companyname }}</td>
-            <td>{{ supplier.address }}</td>
+            <th scope="row">{{ supplier.firstName }} {{supplier.lastName}}</th>
+            <td>{{ supplierCompanyNames[supplier.id] }}</td>
+            <td>{{ supplier.city }}</td>
             <div class="d-flex justify-content-end">
                 <button class="btn bg-primary text-white">Ürünleri Gör</button>
             </div>
@@ -22,20 +22,29 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "SupplierList",
     data() {
       return {
-        suppliers: [
-          {namesurname:"Ali Bakır",companyname:"Eti", address: "Tepebaşı/Eskişehir"},
-          {namesurname:"Veli Gümüş",companyname:"Ülker", address: "Osmangazi/Bursa"},
-          {namesurname:"Ahmet Demir",companyname:"Acord", address: "Gebze/Kocaeli"}
-        ]
+        suppliers: [ ],
+        supplierCompanyNames:[]
       }
     },
     created() {
-      // Burada toptancıların listesini yükleyebilirsiniz
-      // Örneğin, bir HTTP isteği ile bir API'dan verileri alabilirsiniz
+      axios.get("https://localhost:7185/api/WholeSalerUsers")
+      .then(response=>{
+        console.log(response)
+        for(var i=0;i<response.data.length;i++){
+          this.supplierCompanyNames[response.data[i].userId] = response.data[i].companyName
+          axios.get("https://localhost:7185/api/Users/"+response.data[i].userId)
+          .then(response2=>{
+            console.log(response2)
+            this.suppliers.push(response2.data)
+          })
+        }
+      })
     }
 
 }
