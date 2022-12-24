@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wholesaler.Entities.Concrete;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class OrderItem
     {

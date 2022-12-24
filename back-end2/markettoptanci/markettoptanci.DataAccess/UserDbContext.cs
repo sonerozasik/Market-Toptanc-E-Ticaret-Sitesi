@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wholesaler.Entities.Concrete;
 
 namespace markettoptanci.DataAccess
 {
@@ -32,16 +31,6 @@ namespace markettoptanci.DataAccess
         public DbSet<Return> Returns { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Stock> Stocks { get; set; }
-
-
-
-
-
-
-
-
-
-
 
     }
 }

@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wholesaler.Entities.Concrete;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class CartItem
     {

@@ -22,7 +22,7 @@ namespace markettoptanci.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.CartItem", b =>
+            modelBuilder.Entity("markettoptanci.Entities.CartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Category", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Delivery", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Delivery", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +97,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Deliveries");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Log", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Log", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +137,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Logs");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Order", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,7 +173,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.OrderItem", b =>
+            modelBuilder.Entity("markettoptanci.Entities.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -208,7 +208,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Product", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,7 +250,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Return", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Return", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +277,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Returns");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Role", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,7 +298,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.ShoppingCart", b =>
+            modelBuilder.Entity("markettoptanci.Entities.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -314,7 +314,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Stock", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Stock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -412,7 +412,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.GroceryStoreUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
                 {
                     b.HasBaseType("markettoptanci.Entities.User");
 
@@ -425,22 +425,22 @@ namespace markettoptanci.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("GroceryStoreUser");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.WholesalerUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.WholesalerUser", b =>
                 {
                     b.HasBaseType("markettoptanci.Entities.User");
 
                     b.HasDiscriminator().HasValue("WholesalerUser");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.CartItem", b =>
+            modelBuilder.Entity("markettoptanci.Entities.CartItem", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.Product", "Product")
+                    b.HasOne("markettoptanci.Entities.Product", "Product")
                         .WithMany("CartItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.ShoppingCart", "ShoppingCart")
+                    b.HasOne("markettoptanci.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("CartItems")
                         .HasForeignKey("ShoppingCartId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -451,21 +451,21 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Order", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Order", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.Delivery", "Delivery")
+                    b.HasOne("markettoptanci.Entities.Delivery", "Delivery")
                         .WithOne("Order")
-                        .HasForeignKey("Wholesaler.Entities.Concrete.Order", "DeliveryId")
+                        .HasForeignKey("markettoptanci.Entities.Order", "DeliveryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.GroceryStoreUser", "GroceryStoreUser")
+                    b.HasOne("markettoptanci.Entities.GroceryStoreUser", "GroceryStoreUser")
                         .WithMany("Orders")
                         .HasForeignKey("GroceryStoreUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
                         .WithMany("Orders")
                         .HasForeignKey("WholesalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -478,23 +478,23 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("WholesalerUser");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.OrderItem", b =>
+            modelBuilder.Entity("markettoptanci.Entities.OrderItem", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.Order", "Order")
+                    b.HasOne("markettoptanci.Entities.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.Product", "Product")
+                    b.HasOne("markettoptanci.Entities.Product", "Product")
                         .WithMany("OrderItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.Return", "Return")
+                    b.HasOne("markettoptanci.Entities.Return", "Return")
                         .WithOne("OrderItem")
-                        .HasForeignKey("Wholesaler.Entities.Concrete.OrderItem", "ReturnId")
+                        .HasForeignKey("markettoptanci.Entities.OrderItem", "ReturnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -505,21 +505,21 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("Return");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Product", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Product", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.Category", "Category")
+                    b.HasOne("markettoptanci.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.Stock", "Stock")
+                    b.HasOne("markettoptanci.Entities.Stock", "Stock")
                         .WithOne("Product")
-                        .HasForeignKey("Wholesaler.Entities.Concrete.Product", "StockId")
+                        .HasForeignKey("markettoptanci.Entities.Product", "StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
                         .WithMany("Products")
                         .HasForeignKey("WholesalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -532,15 +532,15 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("WholesalerUser");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Return", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Return", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.GroceryStoreUser", "GroceryStoreUser")
+                    b.HasOne("markettoptanci.Entities.GroceryStoreUser", "GroceryStoreUser")
                         .WithMany("Returns")
                         .HasForeignKey("GroceryStoreUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wholesaler.Entities.Concrete.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
                         .WithMany("Returns")
                         .HasForeignKey("WholesalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -553,59 +553,58 @@ namespace markettoptanci.DataAccess.Migrations
 
             modelBuilder.Entity("markettoptanci.Entities.User", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.Role", null)
+                    b.HasOne("markettoptanci.Entities.Role", null)
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.GroceryStoreUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
                 {
-                    b.HasOne("Wholesaler.Entities.Concrete.ShoppingCart", "ShoppingCart")
+                    b.HasOne("markettoptanci.Entities.ShoppingCart", "ShoppingCart")
                         .WithOne("GroceryStoreUser")
-                        .HasForeignKey("Wholesaler.Entities.Concrete.GroceryStoreUser", "ShoppingCartId")
+                        .HasForeignKey("markettoptanci.Entities.GroceryStoreUser", "ShoppingCartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Category", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Delivery", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Delivery", b =>
                 {
-                    b.Navigation("Order")
-                        .IsRequired();
+                    b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Order", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Product", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Product", b =>
                 {
                     b.Navigation("CartItems");
 
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Return", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Return", b =>
                 {
                     b.Navigation("OrderItem")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Role", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.ShoppingCart", b =>
+            modelBuilder.Entity("markettoptanci.Entities.ShoppingCart", b =>
                 {
                     b.Navigation("CartItems");
 
@@ -613,20 +612,20 @@ namespace markettoptanci.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.Stock", b =>
+            modelBuilder.Entity("markettoptanci.Entities.Stock", b =>
                 {
                     b.Navigation("Product")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.GroceryStoreUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
                 {
                     b.Navigation("Orders");
 
                     b.Navigation("Returns");
                 });
 
-            modelBuilder.Entity("Wholesaler.Entities.Concrete.WholesalerUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.WholesalerUser", b =>
                 {
                     b.Navigation("Orders");
 

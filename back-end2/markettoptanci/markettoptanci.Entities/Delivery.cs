@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class Delivery
     {
@@ -14,6 +14,6 @@ namespace Wholesaler.Entities.Concrete
         public string TrackNumber { get; set; }
         public string Status { get; set; }
         public string CompanyName { get; set; }
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
     }
 }

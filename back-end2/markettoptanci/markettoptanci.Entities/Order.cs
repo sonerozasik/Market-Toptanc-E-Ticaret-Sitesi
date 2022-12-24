@@ -4,10 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wholesaler.Entities.Concrete;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class Order
     {

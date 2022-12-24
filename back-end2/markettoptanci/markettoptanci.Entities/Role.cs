@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class Role
     {

@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wholesaler.Entities.Concrete;
 
-namespace Wholesaler.Entities.Concrete
+namespace markettoptanci.Entities
 {
     public class GroceryStoreUser: User
     {
         public ICollection<Order> Orders { get; set; }
         public ICollection<Return> Returns { get; set; }
         public int ShoppingCartId { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
+        public ShoppingCart? ShoppingCart { get; set; }
     }
 }
