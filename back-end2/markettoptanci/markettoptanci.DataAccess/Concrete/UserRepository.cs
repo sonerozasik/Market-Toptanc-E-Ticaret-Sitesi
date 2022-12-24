@@ -1,5 +1,6 @@
 ﻿using markettoptanci.DataAccess.Abstract;
 using markettoptanci.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,15 @@ namespace markettoptanci.DataAccess.Concrete
             {
                 userDbContext.Users.Update(user);
                 userDbContext.SaveChanges();
+                return user;
+            }
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            using (var userDbContext = new UserDbContext())
+            {
+                User user = userDbContext.Users.FirstOrDefault(u => u.UserName == username);
                 return user;
             }
         }

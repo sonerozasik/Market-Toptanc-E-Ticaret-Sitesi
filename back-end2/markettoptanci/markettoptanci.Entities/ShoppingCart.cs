@@ -11,7 +11,7 @@ namespace markettoptanci.Entities
     {
         [Key]
         public int Id { get; set; }
-        public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
         public GroceryStoreUser GroceryStoreUser { get; set; }
         public double TotalPrice
         {

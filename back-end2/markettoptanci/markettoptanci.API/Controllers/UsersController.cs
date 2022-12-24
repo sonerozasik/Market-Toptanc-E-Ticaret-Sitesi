@@ -46,6 +46,18 @@ namespace markettoptanci.API.Controllers
         {
             return _userService.DeleteUser(id);
         }
+
+        [HttpGet("login/{username}/{password}")]
+
+        public bool Login(string username,string password)
+        {
+            User user = _userService.GetUserByUsername(username);
+            if (user.PasswordHash == password)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
 

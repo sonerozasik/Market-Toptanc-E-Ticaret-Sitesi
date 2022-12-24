@@ -41,13 +41,18 @@ namespace markettoptanci.Business.Concrete
             }
 
             throw new Exception("Id can not be less than 1!");
-
             
         }
 
         public User UpdateUser(User user)
         {
             return _userRepository.UpdateUser(user);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            User user = _userRepository.GetUserByUsername(username);
+            return user;
         }
     }
 }

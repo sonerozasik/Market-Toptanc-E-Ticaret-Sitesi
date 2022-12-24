@@ -8,43 +8,43 @@ namespace markettoptanci.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class GroceryStoreUsersController : ControllerBase
     {
-        private IUserService _userService;
-        public UsersController()
+        private IGroceryStoreUserService _groceryStoreUserService;
+        public GroceryStoreUsersController()
         {
-            _userService = new UserManager();
+            _groceryStoreUserService = new GroceryStoreUserManager();
         }
 
 
         [HttpGet]
-        public List<User> GetAllUsers()
+        public List<GroceryStoreUser> GetAllGroceryStoreUsers()
         {
-            return _userService.GetAllUsers();
+            return _groceryStoreUserService.GetAllGroceryStoreUsers();
         }
 
         [HttpGet("{id}")]
-        public User GetUserById(int id)
+        public GroceryStoreUser GetGroceryStoreUserById(int id)
         {
-            return _userService.GetUserById(id);
+            return _groceryStoreUserService.GetGroceryStoreUserById(id);
         }
 
         [HttpPost]
-        public User CreateUser([FromBody]User user)
+        public GroceryStoreUser CreateGroceryStoreUser([FromBody]GroceryStoreUser groceryStoreUser)
         {
-            return _userService.CreateUser(user);
+            return _groceryStoreUserService.CreateGroceryStoreUser(groceryStoreUser);
         }
 
         [HttpPut]
-        public User UpdateUser([FromBody] User user)
+        public GroceryStoreUser UpdateGroceryStoreUser([FromBody] GroceryStoreUser groceryStoreUser)
         {
-            return _userService.UpdateUser(user);
+            return _groceryStoreUserService.UpdateGroceryStoreUser(groceryStoreUser);
         }
 
         [HttpDelete("{id}")]
-        public User DeleteUser(int id)
+        public GroceryStoreUser DeleteGroceryStoreUser(int id)
         {
-            return _userService.DeleteUser(id);
+            return _groceryStoreUserService.DeleteGroceryStoreUser(id);
         }
     }
 }

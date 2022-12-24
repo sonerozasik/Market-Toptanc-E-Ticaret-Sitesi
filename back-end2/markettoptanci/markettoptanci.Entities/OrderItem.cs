@@ -19,10 +19,6 @@ namespace markettoptanci.Entities
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
-        [ForeignKey("Return")]
-        public int ReturnId { get; set; }
-        public Return Return { get; set; }
-
         [ForeignKey("Order")]
         public int OrderId { get; set; }
         public Order Order { get; set; }

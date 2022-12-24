@@ -23,10 +23,9 @@ namespace markettoptanci.DataAccess
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<WholesalerUser> WholesalerUsers { get; set; }
+        public DbSet<WholeSalerUser> WholeSalerUsers { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
-        public DbSet<Log> Logs { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Return> Returns { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }

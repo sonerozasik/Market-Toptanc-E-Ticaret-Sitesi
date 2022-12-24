@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -7,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace markettoptanci.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class deneme : Migration
+    public partial class initalCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,25 +38,6 @@ namespace markettoptanci.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Deliveries", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Logs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MachineName = table.Column<string>(type: "text", nullable: false),
-                    Logged = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Level = table.Column<string>(type: "text", nullable: false),
-                    Message = table.Column<string>(type: "text", nullable: false),
-                    Logger = table.Column<string>(type: "text", nullable: false),
-                    Callsite = table.Column<string>(type: "text", nullable: false),
-                    Exception = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Logs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,23 +100,78 @@ namespace markettoptanci.DataAccess.Migrations
                     City = table.Column<string>(type: "text", nullable: false),
                     District = table.Column<string>(type: "text", nullable: false),
                     Street = table.Column<string>(type: "text", nullable: false),
-                    ZipCode = table.Column<string>(type: "text", nullable: false),
-                    Discriminator = table.Column<string>(type: "text", nullable: false),
-                    ShoppingCartId = table.Column<int>(type: "integer", nullable: true)
+                    ZipCode = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WholeSalerUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    CompanyName = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WholeSalerUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GroceryStoreUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    StoreName = table.Column<string>(type: "text", nullable: false),
+                    ShoppingCartId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroceryStoreUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
+                        name: "FK_GroceryStoreUsers_ShoppingCarts_ShoppingCartId",
+                        column: x => x.ShoppingCartId,
+                        principalTable: "ShoppingCarts",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Thumbnail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    CategoryId = table.Column<int>(type: "integer", nullable: true),
+                    WholesalerUserId = table.Column<int>(type: "integer", nullable: false),
+                    StockId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Products_Stocks_StockId",
+                        column: x => x.StockId,
+                        principalTable: "Stocks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Users_ShoppingCarts_ShoppingCartId",
-                        column: x => x.ShoppingCartId,
-                        principalTable: "ShoppingCarts",
+                        name: "FK_Products_WholeSalerUsers_WholesalerUserId",
+                        column: x => x.WholesalerUserId,
+                        principalTable: "WholeSalerUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -150,7 +185,7 @@ namespace markettoptanci.DataAccess.Migrations
                     DeliveryStatus = table.Column<string>(type: "text", nullable: false),
                     GroceryStoreUserId = table.Column<int>(type: "integer", nullable: false),
                     WholesalerUserId = table.Column<int>(type: "integer", nullable: false),
-                    DeliveryId = table.Column<int>(type: "integer", nullable: false),
+                    DeliveryId = table.Column<int>(type: "integer", nullable: true),
                     TotalPrice = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
@@ -160,81 +195,17 @@ namespace markettoptanci.DataAccess.Migrations
                         name: "FK_Orders_Deliveries_DeliveryId",
                         column: x => x.DeliveryId,
                         principalTable: "Deliveries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Orders_Users_GroceryStoreUserId",
+                        name: "FK_Orders_GroceryStoreUsers_GroceryStoreUserId",
                         column: x => x.GroceryStoreUserId,
-                        principalTable: "Users",
+                        principalTable: "GroceryStoreUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_Users_WholesalerUserId",
+                        name: "FK_Orders_WholeSalerUsers_WholesalerUserId",
                         column: x => x.WholesalerUserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Price = table.Column<double>(type: "double precision", nullable: false),
-                    Thumbnail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false),
-                    WholesalerUserId = table.Column<int>(type: "integer", nullable: false),
-                    StockId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Stocks_StockId",
-                        column: x => x.StockId,
-                        principalTable: "Stocks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Users_WholesalerUserId",
-                        column: x => x.WholesalerUserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Returns",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Status = table.Column<string>(type: "text", nullable: false),
-                    GroceryStoreUserId = table.Column<int>(type: "integer", nullable: false),
-                    WholesalerUserId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Returns", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Returns_Users_GroceryStoreUserId",
-                        column: x => x.GroceryStoreUserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Returns_Users_WholesalerUserId",
-                        column: x => x.WholesalerUserId,
-                        principalTable: "Users",
+                        principalTable: "WholeSalerUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -276,7 +247,6 @@ namespace markettoptanci.DataAccess.Migrations
                     Quantity = table.Column<float>(type: "real", nullable: false),
                     TotalPrice = table.Column<double>(type: "double precision", nullable: false),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
-                    ReturnId = table.Column<int>(type: "integer", nullable: false),
                     OrderId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -294,10 +264,38 @@ namespace markettoptanci.DataAccess.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Returns",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Status = table.Column<string>(type: "text", nullable: false),
+                    OrderItemId = table.Column<int>(type: "integer", nullable: false),
+                    GroceryStoreUserId = table.Column<int>(type: "integer", nullable: false),
+                    WholeSalerUserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Returns", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Returns_ReturnId",
-                        column: x => x.ReturnId,
-                        principalTable: "Returns",
+                        name: "FK_Returns_GroceryStoreUsers_GroceryStoreUserId",
+                        column: x => x.GroceryStoreUserId,
+                        principalTable: "GroceryStoreUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Returns_OrderItems_OrderItemId",
+                        column: x => x.OrderItemId,
+                        principalTable: "OrderItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Returns_WholeSalerUsers_WholeSalerUserId",
+                        column: x => x.WholeSalerUserId,
+                        principalTable: "WholeSalerUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -313,6 +311,12 @@ namespace markettoptanci.DataAccess.Migrations
                 column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GroceryStoreUsers_ShoppingCartId",
+                table: "GroceryStoreUsers",
+                column: "ShoppingCartId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
@@ -321,12 +325,6 @@ namespace markettoptanci.DataAccess.Migrations
                 name: "IX_OrderItems_ProductId",
                 table: "OrderItems",
                 column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_ReturnId",
-                table: "OrderItems",
-                column: "ReturnId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_DeliveryId",
@@ -352,8 +350,7 @@ namespace markettoptanci.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Products_StockId",
                 table: "Products",
-                column: "StockId",
-                unique: true);
+                column: "StockId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_WholesalerUserId",
@@ -366,20 +363,14 @@ namespace markettoptanci.DataAccess.Migrations
                 column: "GroceryStoreUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Returns_WholesalerUserId",
+                name: "IX_Returns_OrderItemId",
                 table: "Returns",
-                column: "WholesalerUserId");
+                column: "OrderItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleId",
-                table: "Users",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_ShoppingCartId",
-                table: "Users",
-                column: "ShoppingCartId",
-                unique: true);
+                name: "IX_Returns_WholeSalerUserId",
+                table: "Returns",
+                column: "WholeSalerUserId");
         }
 
         /// <inheritdoc />
@@ -389,7 +380,13 @@ namespace markettoptanci.DataAccess.Migrations
                 name: "CartItems");
 
             migrationBuilder.DropTable(
-                name: "Logs");
+                name: "Returns");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "OrderItems");
@@ -401,10 +398,10 @@ namespace markettoptanci.DataAccess.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Returns");
+                name: "Deliveries");
 
             migrationBuilder.DropTable(
-                name: "Deliveries");
+                name: "GroceryStoreUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
@@ -413,10 +410,7 @@ namespace markettoptanci.DataAccess.Migrations
                 name: "Stocks");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
+                name: "WholeSalerUsers");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using markettoptanci.Entities.Role;
 using System.Threading.Tasks;
+using markettoptanci.Entities;
 
 namespace markettoptanci.DataAccess.Abstract
 {
     public interface IRoleRepository
     {
-        List<Role> GetAllRole();
+        List<Role> GetAllRoles();
 
         Role GetRoleById(int id);
 

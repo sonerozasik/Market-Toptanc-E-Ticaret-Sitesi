@@ -8,52 +8,52 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.DataAccess.Concrete
 {
-    public class UserRepository : IUserRepository
+    public class OrderRepository : IOrderRepository
     {
-        public User CreateUser(User user)
+        public Order CreateOrder(Order order)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var orderDbContext = new UserDbContext())
             {
-                userDbContext.Users.Add(user);
-                userDbContext.SaveChanges();
-                return user;
+                orderDbContext.Orders.Add(order);
+                orderDbContext.SaveChanges();
+                return order;
             }
         }
 
-        public User DeleteUser(int id)
+        public Order DeleteOrder(int id)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var orderDbContext = new UserDbContext())
             {
-                var deleteUser = GetUserById(id);
-                userDbContext.Users.Remove(deleteUser);
-                userDbContext.SaveChanges();
-                return deleteUser;
+                var deleteOrder = GetOrderById(id);
+                orderDbContext.Orders.Remove(deleteOrder);
+                orderDbContext.SaveChanges();
+                return deleteOrder;
             }
         }
 
-        public User GetUserById(int id)
+        public Order GetOrderById(int id)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var orderDbContext = new UserDbContext())
             {
-                return userDbContext.Users.Find(id);
+                return orderDbContext.Orders.Find(id);
             }
         }
 
-        public List<User> GetAllUsers()
+        public List<Order> GetAllOrders()
         {
-            using(var userDbContext = new UserDbContext())
+            using(var orderDbContext = new UserDbContext())
             {
-                return userDbContext.Users.ToList();
+                return orderDbContext.Orders.ToList();
             }
         }
 
-        public User UpdateUser(User user)
+        public Order UpdateOrder(Order order)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var orderDbContext = new UserDbContext())
             {
-                userDbContext.Users.Update(user);
-                userDbContext.SaveChanges();
-                return user;
+                orderDbContext.Orders.Update(order);
+                orderDbContext.SaveChanges();
+                return order;
             }
         }
     }

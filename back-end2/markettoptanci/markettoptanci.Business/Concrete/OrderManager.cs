@@ -10,34 +10,34 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.Business.Concrete
 {
-    public class UserManager: IUserService
+    public class OrderManager: IOrderService
     {
-        private IUserRepository _userRepository;
+        private IOrderRepository _orderRepository;
 
-        public UserManager()
+        public OrderManager()
         {
-            _userRepository = new UserRepository();
+            _orderRepository = new OrderRepository();
         }
-        public User CreateUser(User user)
+        public Order CreateOrder(Order order)
         {
-            return _userRepository.CreateUser(user);
-        }
-
-        public User DeleteUser(int id)
-        {
-            return _userRepository.DeleteUser(id);
+            return _orderRepository.CreateOrder(order);
         }
 
-        public List<User> GetAllUsers()
+        public Order DeleteOrder(int id)
         {
-            return _userRepository.GetAllUsers();
+            return _orderRepository.DeleteOrder(id);
         }
 
-        public User GetUserById(int id)
+        public List<Order> GetAllOrders()
+        {
+            return _orderRepository.GetAllOrders();
+        }
+
+        public Order GetOrderById(int id)
         {
             if (id > 0)
             {
-                return _userRepository.GetUserById(id);
+                return _orderRepository.GetOrderById(id);
             }
 
             throw new Exception("Id can not be less than 1!");
@@ -45,9 +45,9 @@ namespace markettoptanci.Business.Concrete
             
         }
 
-        public User UpdateUser(User user)
+        public Order UpdateOrder(Order order)
         {
-            return _userRepository.UpdateUser(user);
+            return _orderRepository.UpdateOrder(order);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using markettoptanci.Business.Abstract;
+using markettoptanci.Business.Concrete;
+using markettoptanci.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

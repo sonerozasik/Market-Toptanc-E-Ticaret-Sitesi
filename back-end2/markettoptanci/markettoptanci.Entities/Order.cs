@@ -21,11 +21,11 @@ namespace markettoptanci.Entities
 
         [ForeignKey("WholesalerUser")]
         public int WholesalerUserId { get; set; }
-        public WholesalerUser WholesalerUser { get; set; }
+        public WholeSalerUser WholesalerUser { get; set; }
 
         [ForeignKey("Delivery")]
-        public int DeliveryId { get; set; }
-        public Delivery Delivery { get; set; }
+        public int? DeliveryId { get; set; }
+        public Delivery? Delivery { get; set; }
         public double TotalPrice { 
             get { return TotalPrice; } 
             set { 

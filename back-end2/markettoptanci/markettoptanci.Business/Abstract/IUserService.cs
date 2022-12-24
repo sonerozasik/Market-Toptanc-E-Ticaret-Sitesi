@@ -18,5 +18,7 @@ namespace markettoptanci.Business.Abstract
         User UpdateUser(User user);
 
         User DeleteUser(int id);
+
+        User GetUserByUsername(string username);
     }
 }

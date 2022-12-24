@@ -10,34 +10,34 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.Business.Concrete
 {
-    public class UserManager: IUserService
+    public class GroceryStoreUserManager: IGroceryStoreUserService
     {
-        private IUserRepository _userRepository;
+        private IGroceryStoreUserRepository _groceryStoreUserRepository;
 
-        public UserManager()
+        public GroceryStoreUserManager()
         {
-            _userRepository = new UserRepository();
+            _groceryStoreUserRepository = new GroceryStoreUserRepository();
         }
-        public User CreateUser(User user)
+        public GroceryStoreUser CreateGroceryStoreUser(GroceryStoreUser groceryStoreUser)
         {
-            return _userRepository.CreateUser(user);
-        }
-
-        public User DeleteUser(int id)
-        {
-            return _userRepository.DeleteUser(id);
+            return _groceryStoreUserRepository.CreateGroceryStoreUser(groceryStoreUser);
         }
 
-        public List<User> GetAllUsers()
+        public GroceryStoreUser DeleteGroceryStoreUser(int id)
         {
-            return _userRepository.GetAllUsers();
+            return _groceryStoreUserRepository.DeleteGroceryStoreUser(id);
         }
 
-        public User GetUserById(int id)
+        public List<GroceryStoreUser> GetAllGroceryStoreUsers()
+        {
+            return _groceryStoreUserRepository.GetAllGroceryStoreUsers();
+        }
+
+        public GroceryStoreUser GetGroceryStoreUserById(int id)
         {
             if (id > 0)
             {
-                return _userRepository.GetUserById(id);
+                return _groceryStoreUserRepository.GetGroceryStoreUserById(id);
             }
 
             throw new Exception("Id can not be less than 1!");
@@ -45,9 +45,9 @@ namespace markettoptanci.Business.Concrete
             
         }
 
-        public User UpdateUser(User user)
+        public GroceryStoreUser UpdateGroceryStoreUser(GroceryStoreUser groceryStoreUser)
         {
-            return _userRepository.UpdateUser(user);
+            return _groceryStoreUserRepository.UpdateGroceryStoreUser(groceryStoreUser);
         }
     }
 }

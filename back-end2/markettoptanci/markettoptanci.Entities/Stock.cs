@@ -14,6 +14,6 @@ namespace markettoptanci.Entities
         public int Quantity { get; set; }
         public string StockType { get; set; }
         public string Description { get; set; }
-        public Product Product { get; set; }
+        //public Product Product { get; set; }
     }
 }

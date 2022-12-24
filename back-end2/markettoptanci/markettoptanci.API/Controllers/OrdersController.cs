@@ -8,43 +8,43 @@ namespace markettoptanci.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class OrdersController : ControllerBase
     {
-        private IUserService _userService;
-        public UsersController()
+        private IOrderService _orderService;
+        public OrdersController()
         {
-            _userService = new UserManager();
+            _orderService = new OrderManager();
         }
 
 
         [HttpGet]
-        public List<User> GetAllUsers()
+        public List<Order> GetAllOrders()
         {
-            return _userService.GetAllUsers();
+            return _orderService.GetAllOrders();
         }
 
         [HttpGet("{id}")]
-        public User GetUserById(int id)
+        public Order GetOrderById(int id)
         {
-            return _userService.GetUserById(id);
+            return _orderService.GetOrderById(id);
         }
 
         [HttpPost]
-        public User CreateUser([FromBody]User user)
+        public Order CreateOrder([FromBody]Order order)
         {
-            return _userService.CreateUser(user);
+            return _orderService.CreateOrder(order);
         }
 
         [HttpPut]
-        public User UpdateUser([FromBody] User user)
+        public Order UpdateOrder([FromBody] Order order)
         {
-            return _userService.UpdateUser(user);
+            return _orderService.UpdateOrder(order);
         }
 
         [HttpDelete("{id}")]
-        public User DeleteUser(int id)
+        public Order DeleteOrder(int id)
         {
-            return _userService.DeleteUser(id);
+            return _orderService.DeleteOrder(id);
         }
     }
 }

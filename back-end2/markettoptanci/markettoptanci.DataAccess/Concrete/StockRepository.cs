@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using markettoptanci.DataAccess.Abstract.IStockRepository;
+using markettoptanci.DataAccess.Abstract;
+using markettoptanci.Entities;
 
 namespace markettoptanci.DataAccess.Concrete
 {
@@ -57,4 +58,4 @@ namespace markettoptanci.DataAccess.Concrete
         }
     }
 }
-}
+

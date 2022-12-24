@@ -1,4 +1,8 @@
-﻿using System;
+﻿using markettoptanci.Business.Abstract;
+using markettoptanci.DataAccess.Abstract;
+using markettoptanci.DataAccess.Concrete;
+using markettoptanci.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.Business.Concrete
 {
-    public class ShoppingCartManager
+    public class ShoppingCartManager : IShoppingCartService
     {
         private IShoppingCartRepository _shoppingCartRepository;
 

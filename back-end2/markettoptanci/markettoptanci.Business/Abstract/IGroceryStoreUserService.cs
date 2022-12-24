@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.Business.Abstract
 {
-    public interface IUserService
+    public interface IGroceryStoreUserService
     {
-        List<User> GetAllUsers();
+        List<GroceryStoreUser> GetAllGroceryStoreUsers();
 
-        User GetUserById(int id);
+        GroceryStoreUser GetGroceryStoreUserById(int id);
 
-        User CreateUser(User user);
+        GroceryStoreUser CreateGroceryStoreUser(GroceryStoreUser groceryStoreUser);
 
-        User UpdateUser(User user);
+        GroceryStoreUser UpdateGroceryStoreUser(GroceryStoreUser groceryStoreUser);
 
-        User DeleteUser(int id);
+        GroceryStoreUser DeleteGroceryStoreUser(int id);
     }
 }

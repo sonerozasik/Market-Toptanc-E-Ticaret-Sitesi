@@ -1,4 +1,5 @@
-﻿using System;
+﻿using markettoptanci.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace markettoptanci.DataAccess.Abstract
 {
     public interface IReturnRepository
     {
-        List<Return> GetAllReturn();
+        List<Return> GetAllReturns();
 
         Return GetReturnById(int id);
 

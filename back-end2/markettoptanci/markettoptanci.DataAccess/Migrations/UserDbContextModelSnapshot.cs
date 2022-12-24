@@ -97,7 +97,7 @@ namespace markettoptanci.DataAccess.Migrations
                     b.ToTable("Deliveries");
                 });
 
-            modelBuilder.Entity("markettoptanci.Entities.Log", b =>
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,36 +105,22 @@ namespace markettoptanci.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Callsite")
+                    b.Property<int?>("ShoppingCartId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StoreName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Exception")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Logged")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Logger")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("MachineName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs");
+                    b.HasIndex("ShoppingCartId")
+                        .IsUnique();
+
+                    b.ToTable("GroceryStoreUsers");
                 });
 
             modelBuilder.Entity("markettoptanci.Entities.Order", b =>
@@ -145,7 +131,7 @@ namespace markettoptanci.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DeliveryId")
+                    b.Property<int?>("DeliveryId")
                         .HasColumnType("integer");
 
                     b.Property<string>("DeliveryStatus")
@@ -190,9 +176,6 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
-                    b.Property<int>("ReturnId")
-                        .HasColumnType("integer");
-
                     b.Property<double>("TotalPrice")
                         .HasColumnType("double precision");
 
@@ -201,9 +184,6 @@ namespace markettoptanci.DataAccess.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ReturnId")
-                        .IsUnique();
 
                     b.ToTable("OrderItems");
                 });
@@ -216,7 +196,7 @@ namespace markettoptanci.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<double>("Price")
@@ -242,8 +222,7 @@ namespace markettoptanci.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("StockId")
-                        .IsUnique();
+                    b.HasIndex("StockId");
 
                     b.HasIndex("WholesalerUserId");
 
@@ -261,18 +240,23 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Property<int>("GroceryStoreUserId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("OrderItemId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("WholesalerUserId")
+                    b.Property<int>("WholeSalerUserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroceryStoreUserId");
 
-                    b.HasIndex("WholesalerUserId");
+                    b.HasIndex("OrderItemId");
+
+                    b.HasIndex("WholeSalerUserId");
 
                     b.ToTable("Returns");
                 });
@@ -354,10 +338,6 @@ namespace markettoptanci.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("text");
@@ -403,39 +383,33 @@ namespace markettoptanci.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("Users");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
-
-                    b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.WholeSalerUser", b =>
                 {
-                    b.HasBaseType("markettoptanci.Entities.User");
-
-                    b.Property<int>("ShoppingCartId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    b.HasIndex("ShoppingCartId")
-                        .IsUnique();
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.HasDiscriminator().HasValue("GroceryStoreUser");
-                });
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-            modelBuilder.Entity("markettoptanci.Entities.WholesalerUser", b =>
-                {
-                    b.HasBaseType("markettoptanci.Entities.User");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
-                    b.HasDiscriminator().HasValue("WholesalerUser");
+                    b.HasKey("Id");
+
+                    b.ToTable("WholeSalerUsers");
                 });
 
             modelBuilder.Entity("markettoptanci.Entities.CartItem", b =>
                 {
                     b.HasOne("markettoptanci.Entities.Product", "Product")
-                        .WithMany("CartItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -451,13 +425,20 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
+                {
+                    b.HasOne("markettoptanci.Entities.ShoppingCart", "ShoppingCart")
+                        .WithOne("GroceryStoreUser")
+                        .HasForeignKey("markettoptanci.Entities.GroceryStoreUser", "ShoppingCartId");
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("markettoptanci.Entities.Order", b =>
                 {
                     b.HasOne("markettoptanci.Entities.Delivery", "Delivery")
                         .WithOne("Order")
-                        .HasForeignKey("markettoptanci.Entities.Order", "DeliveryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("markettoptanci.Entities.Order", "DeliveryId");
 
                     b.HasOne("markettoptanci.Entities.GroceryStoreUser", "GroceryStoreUser")
                         .WithMany("Orders")
@@ -465,7 +446,7 @@ namespace markettoptanci.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.WholeSalerUser", "WholesalerUser")
                         .WithMany("Orders")
                         .HasForeignKey("WholesalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -487,39 +468,29 @@ namespace markettoptanci.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("markettoptanci.Entities.Product", "Product")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("markettoptanci.Entities.Return", "Return")
-                        .WithOne("OrderItem")
-                        .HasForeignKey("markettoptanci.Entities.OrderItem", "ReturnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
 
                     b.Navigation("Product");
-
-                    b.Navigation("Return");
                 });
 
             modelBuilder.Entity("markettoptanci.Entities.Product", b =>
                 {
                     b.HasOne("markettoptanci.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("markettoptanci.Entities.Stock", "Stock")
-                        .WithOne("Product")
-                        .HasForeignKey("markettoptanci.Entities.Product", "StockId")
+                        .WithMany()
+                        .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.WholeSalerUser", "WholesalerUser")
                         .WithMany("Products")
                         .HasForeignKey("WholesalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -540,35 +511,23 @@ namespace markettoptanci.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("markettoptanci.Entities.WholesalerUser", "WholesalerUser")
+                    b.HasOne("markettoptanci.Entities.OrderItem", "OrderItem")
+                        .WithMany()
+                        .HasForeignKey("OrderItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("markettoptanci.Entities.WholeSalerUser", "WholesalerUser")
                         .WithMany("Returns")
-                        .HasForeignKey("WholesalerUserId")
+                        .HasForeignKey("WholeSalerUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GroceryStoreUser");
 
+                    b.Navigation("OrderItem");
+
                     b.Navigation("WholesalerUser");
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.User", b =>
-                {
-                    b.HasOne("markettoptanci.Entities.Role", null)
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
-                {
-                    b.HasOne("markettoptanci.Entities.ShoppingCart", "ShoppingCart")
-                        .WithOne("GroceryStoreUser")
-                        .HasForeignKey("markettoptanci.Entities.GroceryStoreUser", "ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("markettoptanci.Entities.Category", b =>
@@ -581,27 +540,16 @@ namespace markettoptanci.DataAccess.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Returns");
+                });
+
             modelBuilder.Entity("markettoptanci.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.Product", b =>
-                {
-                    b.Navigation("CartItems");
-
-                    b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.Return", b =>
-                {
-                    b.Navigation("OrderItem")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("markettoptanci.Entities.ShoppingCart", b =>
@@ -612,20 +560,7 @@ namespace markettoptanci.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("markettoptanci.Entities.Stock", b =>
-                {
-                    b.Navigation("Product")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.GroceryStoreUser", b =>
-                {
-                    b.Navigation("Orders");
-
-                    b.Navigation("Returns");
-                });
-
-            modelBuilder.Entity("markettoptanci.Entities.WholesalerUser", b =>
+            modelBuilder.Entity("markettoptanci.Entities.WholeSalerUser", b =>
                 {
                     b.Navigation("Orders");
 

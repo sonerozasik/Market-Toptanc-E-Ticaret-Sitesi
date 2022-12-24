@@ -8,52 +8,52 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.DataAccess.Concrete
 {
-    public class UserRepository : IUserRepository
+    public class GroceryStoreUserRepository : IGroceryStoreUserRepository
     {
-        public User CreateUser(User user)
+        public GroceryStoreUser CreateGroceryStoreUser(GroceryStoreUser groceryStoreUser)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var groceryStoreUserDbContext = new UserDbContext())
             {
-                userDbContext.Users.Add(user);
-                userDbContext.SaveChanges();
-                return user;
+                groceryStoreUserDbContext.GroceryStoreUsers.Add(groceryStoreUser);
+                groceryStoreUserDbContext.SaveChanges();
+                return groceryStoreUser;
             }
         }
 
-        public User DeleteUser(int id)
+        public GroceryStoreUser DeleteGroceryStoreUser(int id)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var groceryStoreUserDbContext = new UserDbContext())
             {
-                var deleteUser = GetUserById(id);
-                userDbContext.Users.Remove(deleteUser);
-                userDbContext.SaveChanges();
-                return deleteUser;
+                var deleteGroceryStoreUser = GetGroceryStoreUserById(id);
+                groceryStoreUserDbContext.GroceryStoreUsers.Remove(deleteGroceryStoreUser);
+                groceryStoreUserDbContext.SaveChanges();
+                return deleteGroceryStoreUser;
             }
         }
 
-        public User GetUserById(int id)
+        public GroceryStoreUser GetGroceryStoreUserById(int id)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var groceryStoreUserDbContext = new UserDbContext())
             {
-                return userDbContext.Users.Find(id);
+                return groceryStoreUserDbContext.GroceryStoreUsers.Find(id);
             }
         }
 
-        public List<User> GetAllUsers()
+        public List<GroceryStoreUser> GetAllGroceryStoreUsers()
         {
-            using(var userDbContext = new UserDbContext())
+            using(var groceryStoreUserDbContext = new UserDbContext())
             {
-                return userDbContext.Users.ToList();
+                return groceryStoreUserDbContext.GroceryStoreUsers.ToList();
             }
         }
 
-        public User UpdateUser(User user)
+        public GroceryStoreUser UpdateGroceryStoreUser(GroceryStoreUser groceryStoreUser)
         {
-            using (var userDbContext = new UserDbContext())
+            using (var groceryStoreUserDbContext = new UserDbContext())
             {
-                userDbContext.Users.Update(user);
-                userDbContext.SaveChanges();
-                return user;
+                groceryStoreUserDbContext.GroceryStoreUsers.Update(groceryStoreUser);
+                groceryStoreUserDbContext.SaveChanges();
+                return groceryStoreUser;
             }
         }
     }

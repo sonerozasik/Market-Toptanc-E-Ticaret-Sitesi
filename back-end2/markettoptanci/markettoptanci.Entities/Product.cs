@@ -21,18 +21,16 @@ namespace markettoptanci.Entities
         public string Thumbnail { get; set; }
 
         [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
         [ForeignKey("WholesalerUser")]
         public int WholesalerUserId { get; set; }
-        public WholesalerUser WholesalerUser { get; set; }
+        public WholeSalerUser WholesalerUser { get; set; }
 
         [ForeignKey("Stock")]
         public int StockId { get; set; }
         public Stock Stock { get; set; }
-        public ICollection<CartItem> CartItems { get; set; }
-        public ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

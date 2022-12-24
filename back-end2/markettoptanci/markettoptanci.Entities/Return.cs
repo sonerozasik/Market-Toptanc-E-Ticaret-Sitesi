@@ -14,6 +14,8 @@ namespace markettoptanci.Entities
         public int Id { get; set; }
         public string Status { get; set; }
 
+        [ForeignKey("OrderItem")]
+        public int OrderItemId { get; set; }
         public OrderItem OrderItem { get; set; }
 
         [ForeignKey("GroceryStoreUser")]
@@ -21,8 +23,8 @@ namespace markettoptanci.Entities
         public GroceryStoreUser GroceryStoreUser { get; set; }
 
         [ForeignKey("WholesalerUser")]
-        public int WholesalerUserId { get; set; }
-        public WholesalerUser WholesalerUser { get; set; }
+        public int WholeSalerUserId { get; set; }
+        public WholeSalerUser WholesalerUser { get; set; }
 
     }
 }

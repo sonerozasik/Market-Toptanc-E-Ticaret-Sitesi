@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace markettoptanci.Business.Abstract
 {
-    public interface IUserService
+    public interface IOrderService
     {
-        List<User> GetAllUsers();
+        List<Order> GetAllOrders();
 
-        User GetUserById(int id);
+        Order GetOrderById(int id);
 
-        User CreateUser(User user);
+        Order CreateOrder(Order order);
 
-        User UpdateUser(User user);
+        Order UpdateOrder(Order order);
 
-        User DeleteUser(int id);
+        Order DeleteOrder(int id);
     }
 }
