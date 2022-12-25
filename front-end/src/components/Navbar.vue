@@ -8,14 +8,20 @@
             <li class="nav-item" v-if="!isAuthenticated">
               <router-link class="nav-link" to="/signup" >Üye Ol</router-link>
             </li>
-            <li class="nav-item" v-if="isAuthenticated">
+            <li class="nav-item" v-if="isAuthenticated && userRole==1">
               <router-link class="nav-link" to="/product-list" >Mağaza</router-link>
             </li>
-            <li class="nav-item" v-if="isAuthenticated">
+            <li class="nav-item" v-if="isAuthenticated && userRole==1">
               <router-link class="nav-link" to="/supplier-list" >Toptancılar</router-link>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
-              <router-link class="nav-link" to="/order-list" >Siparişlerim</router-link>
+              <router-link class="nav-link" to="/order-list">Siparişlerim</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated && userRole==2">
+              <router-link class="nav-link" to="/self-product-list" >Ürünlerim</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated && userRole==2">
+              <router-link class="nav-link" to="/add-product" >Ürün Ekle</router-link>
             </li>
           </ul>
           <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated">
@@ -36,16 +42,19 @@ export default{
   },
   props:{
     isAuthenticated:Boolean,
-    isCartOpen:Boolean
+    isCartOpen:Boolean,
+    userRole:Number
   },
   components:{
     BIconCart4,
   },
   methods:{
     cartHandler(){
-      this.$emit("handleCart"); 
+      console.log(this.userRole)
+      //this.$emit("handleCart"); 
     }
   }
+
 }
 
 </script>

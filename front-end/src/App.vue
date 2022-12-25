@@ -1,11 +1,15 @@
 <template>
   <div class="container">
     <Navbar :isAuthenticated="isAuthenticated"
+      :userRole="userRole"
       v-on:handleCart="isCartOpen = isCartOpen ? false : true"
     />
     <RouterView 
       v-on:loginResponse="loginResponse($event)"
       v-on:signupResponse="signupResponse($event)"
+      v-on:addProductResponse="addProductResponse($event)"
+
+      :userId="userId"
 
     />
     <ShoppingCart v-if="isCartOpen" 
@@ -25,7 +29,9 @@ export default {
   data(){
     return{
       isAuthenticated:false,
-      isCartOpen:false
+      isCartOpen:false,
+      userRole : 0,
+      userId:0
     }
   },
   components: {
@@ -40,6 +46,8 @@ export default {
             this.succesMessage(response.message);
             this.$router.push("/supplier-list");
             this.isAuthenticated=true;
+            this.userRole = response.userRole;
+            this.userId= response.userId;
         }
         else {
             this.errorMessage(response.message);
@@ -48,6 +56,14 @@ export default {
     signupResponse(response) {
         if (response.succes == true) {
             this.$router.push("/login");
+            this.succesMessage(response.message);
+        }
+        else {
+            this.errorMessage(response.message);
+        }
+    },
+    addProductResponse(response) {
+        if (response.succes == true) {
             this.succesMessage(response.message);
         }
         else {

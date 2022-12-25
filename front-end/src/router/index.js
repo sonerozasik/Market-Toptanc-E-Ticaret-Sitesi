@@ -4,7 +4,7 @@ import SignUpForm from '../components/SignupForm.vue'
 import SupplierList from '../components/SupplierList.vue'
 import ProductList from '../components/ProductList.vue'
 import OrderList from '../components/OrderList.vue'
-
+import AddProduct from '../components/AddProduct.vue'
 
 const routes = [
   {
@@ -31,6 +31,11 @@ const routes = [
     path: '/order-list',
     name: 'order-list',
     component : OrderList
+  },
+  {
+    path: '/add-product',
+    name: 'add-product',
+    component : AddProduct
   }
 ]
 

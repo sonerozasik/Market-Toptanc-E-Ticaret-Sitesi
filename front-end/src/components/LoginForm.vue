@@ -46,8 +46,8 @@ export default {
         axios.get("https://localhost:7185/api/Users/login/"+this.username+"/"+this.password)
         .then(response=>{
           console.log(response)
-          if(response.status==200 && response.data==true){
-            this.$emit('loginResponse',{message:"Giriş Başarılı!",succes:true});
+          if(response.status==200){
+            this.$emit('loginResponse',{message:"Giriş Başarılı!",succes:true,userRole: response.data.roleId ,userId: response.data.id});
           }
           else 
           this.$emit('loginResponse',{message:"Giriş Başarısız!",succes:false});

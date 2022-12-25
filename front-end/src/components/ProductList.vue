@@ -17,8 +17,8 @@
             <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
             <td><input type="text" style="width:200px" placeholder="Toptancı"> </td>
             <td><select name="category" id="category" >
-              <option value="Hepsi">Hepsi</option>
-              <option v-for="category in categories" value="{{category.name}}">{{category.name}}</option>
+              <option value="all">Hepsi</option>
+              <option v-for="category in categories" v-bind:value="category.id">{{category.name}}</option>
             </select> </td>
             <div class="d-flex justify-content-end">
                 <button class="btn bg-primary text-white">Filtrele</button>
@@ -33,7 +33,6 @@
           <th scope="col">Ürün Kodu</th>
           <th scope="col">Ürün Adı</th>
           <th scope="col">Fiyatı</th>
-          <th scope="col">Birim Fiyatı</th>
           <th scope="col">Toptancı</th>
           <th scope="col">Stok Türü</th>
           <th scope="col" >Miktar</th>
@@ -44,11 +43,10 @@
       <tbody>
         <tr v-for="product in products">
           <th scope="row">{{ product.id }}</th>
-          <td>{{ product.name }}</td>
+          <td>{{ product.productName }}</td>
           <td>{{ product.price }}</td>
-          <td>{{ (product.price/product.stockamount).toFixed(2) }}</td>
-          <td>{{ product.supplier }}</td>
-          <td>{{ product.stockamount }} {{ product.stocktype }}</td>
+          <td>{{ product.wholeSalerUser.companyName }}</td>
+          <td>{{ product.stock.quantity }} {{ product.stock.stockType }}</td>
           <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
           <div class="d-flex justify-content-end">
               <button class="btn bg-primary text-white">Sepete Ekle!</button>
@@ -60,61 +58,27 @@
 
 
 <script>
+import axios from 'axios';
 export default {
   name: "SupplierList",
   data() {
     return {
-      products : [
-        {
-            id:1,
-            name:"Eti Çikolata",
-            price: 50,
-            supplier: "Eti",
-            stocktype: "Adet",
-            stockamount:12
-        },
-        {
-            id:2,
-            name:"Ülker Çikolata",
-            price: 100.00,
-            supplier: "Ülker",
-            stocktype: "Adet",
-            stockamount:24
-
-        },
-        {
-            id:3,
-            name:"ACE Çamaşır Suyu",
-            price: 110.99,
-            supplier: "ACE",
-            stocktype: "Adet",
-            stockamount:6
-
-        },
-        {
-            id:4,
-            name:"Temizlik Bezi",
-            price: 299.00,
-            supplier: "Acord",
-            stocktype: "Adet",
-            stockamount:30
-        },
-
-      ],
-      categories : [
-        {
-          name: "Gıda"
-        },
-        {
-          name: "Temizlik"
-        }
-      ]
+      products : [ ],
+      categories : [ ]
     }
     
   },
   created() {
-    // Burada toptancıların listesini yükleyebilirsiniz
-    // Örneğin, bir HTTP isteği ile bir API'dan verileri alabilirsiniz
+    axios.get("https://localhost:7185/api/Categories")
+    .then(response=>{
+        console.log(response)
+        this.categories = response.data
+    })
+    axios.get("https://localhost:7185/api/Products")
+    .then(response=>{
+        console.log(response)
+        this.products = response.data
+    })
   },
   methods:{
     control(evt){

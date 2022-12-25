@@ -112,7 +112,8 @@ export default {
   },
   methods: {
     register(){
-
+      var RoleId = 2;
+      if(this.userType=="GroceryStoreUsers") RoleId = 1
       if(this.confirmPassword==this.password){
         axios
         .post("https://localhost:7185/api/Users",
@@ -127,7 +128,8 @@ export default {
           City: this.storeCity,
           District: this.storeDistrict,
           Street: this.storeStreet,
-          ZipCode: this.storeZip
+          ZipCode: this.storeZip,
+          RoleId : RoleId,
         })
         .then(response=>{
           console.log(response)
