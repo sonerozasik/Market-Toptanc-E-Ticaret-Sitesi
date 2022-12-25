@@ -49,5 +49,11 @@ namespace markettoptanci.API.Controllers
         {
             return _wholeSalerUserService.DeleteWholeSalerUser(id);
         }
+
+        [HttpGet("getId/{userId}")]
+        public int GetWholeSalerUserIdByUserId(int userId)
+        {
+            return _wholeSalerUserService.GetWholeSalerUserByUserId(userId).Id;
+        }
     }
 }

@@ -18,5 +18,7 @@ namespace markettoptanci.Business.Abstract
         WholeSalerUser UpdateWholeSalerUser(WholeSalerUser wholeSalerUser);
 
         WholeSalerUser DeleteWholeSalerUser(int id);
+
+        WholeSalerUser GetWholeSalerUserByUserId(int userId);
     }
 }

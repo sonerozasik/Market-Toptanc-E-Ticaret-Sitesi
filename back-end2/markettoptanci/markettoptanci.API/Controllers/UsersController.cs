@@ -49,14 +49,14 @@ namespace markettoptanci.API.Controllers
 
         [HttpGet("login/{username}/{password}")]
 
-        public bool Login(string username,string password)
+        public ActionResult<User> Login(string username,string password)
         {
             User user = _userService.GetUserByUsername(username);
             if (user.PasswordHash == password)
             {
-                return true;
+                return user;
             }
-            return false;
+            return BadRequest("False Password!");
         }
     }
 }

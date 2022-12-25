@@ -49,5 +49,10 @@ namespace markettoptanci.Business.Concrete
         {
             return _wholeSalerUserRepository.UpdateWholeSalerUser(wholeSalerUser);
         }
+
+        public WholeSalerUser GetWholeSalerUserByUserId(int userId)
+        {
+            return _wholeSalerUserRepository.GetWholeSalerUserByUserId(userId);
+        }
     }
 }

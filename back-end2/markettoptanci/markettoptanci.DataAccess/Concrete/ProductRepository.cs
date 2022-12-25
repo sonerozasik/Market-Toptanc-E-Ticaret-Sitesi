@@ -43,7 +43,17 @@ namespace markettoptanci.DataAccess.Concrete
         {
             using (var productDbContext = new UserDbContext())
             {
-                return productDbContext.Products.ToList();
+                List<Product> products = productDbContext.Products.ToList();
+                foreach (var product in products)
+                {
+                    Stock stock = new Stock();
+                    WholeSalerUser wholeSalerUser = new WholeSalerUser();
+                    stock = productDbContext.Stocks.Find(product.StockId);
+                    wholeSalerUser = productDbContext.WholeSalerUsers.Find(product.WholeSalerUserId);
+                    product.Stock = stock;
+                    product.WholeSalerUser = wholeSalerUser;
+                }
+                return products;
             }
         }
 

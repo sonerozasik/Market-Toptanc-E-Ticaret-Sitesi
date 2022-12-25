@@ -42,8 +42,15 @@ namespace markettoptanci.DataAccess.Concrete
         public List<WholeSalerUser> GetAllWholeSalerUsers()
         {
             using (var WholeSalerUserDbContext = new UserDbContext())
-            {
-                return WholeSalerUserDbContext.WholeSalerUsers.ToList();
+            {       
+                List<WholeSalerUser> wholeSalerUsers = WholeSalerUserDbContext.WholeSalerUsers.ToList();
+                foreach (var wholeSalerUser in wholeSalerUsers)
+                {
+                    User user = new User();
+                    user = WholeSalerUserDbContext.Users.Find(wholeSalerUser.UserId);
+                    wholeSalerUser.User = user;
+                }
+                return wholeSalerUsers;
             }
         }
 
@@ -54,6 +61,14 @@ namespace markettoptanci.DataAccess.Concrete
                 WholeSalerUserDbContext.WholeSalerUsers.Update(wholeSalerUser);
                 WholeSalerUserDbContext.SaveChanges();
                 return wholeSalerUser;
+            }
+        }
+
+        public WholeSalerUser GetWholeSalerUserByUserId(int userId)
+        {
+            using (var WholeSalerUserDbContext = new UserDbContext()) 
+            {
+                return WholeSalerUserDbContext.WholeSalerUsers.FirstOrDefault(u => u.UserId == userId);
             }
         }
     }

@@ -24,13 +24,13 @@ namespace markettoptanci.Entities
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
-        [ForeignKey("WholesalerUser")]
-        public int WholesalerUserId { get; set; }
-        public WholeSalerUser WholesalerUser { get; set; }
+        [ForeignKey("WholeSalerUser")]
+        public int WholeSalerUserId { get; set; }
+        public WholeSalerUser? WholeSalerUser { get; set; }
 
         [ForeignKey("Stock")]
         public int StockId { get; set; }
-        public Stock Stock { get; set; }
+        public Stock? Stock { get; set; }
 
     }
 }
