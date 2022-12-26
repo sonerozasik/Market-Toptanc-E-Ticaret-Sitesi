@@ -8,12 +8,14 @@
       v-on:loginResponse="loginResponse($event)"
       v-on:signupResponse="signupResponse($event)"
       v-on:addProductResponse="addProductResponse($event)"
-
       :userId="userId"
+      :userRole="userRole"
 
     />
     <ShoppingCart v-if="isCartOpen" 
       v-on:handleCart="isCartOpen = isCartOpen ? false : true" 
+      :userId="userId"
+
     />
   </div>
 

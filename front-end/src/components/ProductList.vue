@@ -42,14 +42,14 @@
       </thead>
       <tbody>
         <tr v-for="product in products">
-          <th scope="row">{{ product.id }}</th>
+          <th scope="row">{{product.id}}</th>
           <td>{{ product.productName }}</td>
           <td>{{ product.price }}</td>
           <td>{{ product.wholeSalerUser.companyName }}</td>
           <td>{{ product.stock.quantity }} {{ product.stock.stockType }}</td>
-          <td><input type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
+          <td><input :ref="'element'+product.id" type="number" style="width:100px" @keypress="control($event)" placeholder="0" min="0"> </td>
           <div class="d-flex justify-content-end">
-              <button class="btn bg-primary text-white">Sepete Ekle!</button>
+              <button class="btn bg-primary text-white" @click="addToCart(product.id)">Sepete Ekle!</button>
           </div>
         </tr>
       </tbody>
@@ -64,9 +64,13 @@ export default {
   data() {
     return {
       products : [ ],
-      categories : [ ]
+      categories : [ ],
+      user : {}
     }
     
+  },
+  props:{
+    userId : Number
   },
   created() {
     axios.get("https://localhost:7185/api/Categories")
@@ -79,6 +83,14 @@ export default {
         console.log(response)
         this.products = response.data
     })
+    axios.get("https://localhost:7185/api/GroceryStoreUsers/getByUserId/"+this.userId)
+    .then(response=>{
+      console.log(response)
+      this.user = response.data;
+    })
+  },
+  mounted(){
+    
   },
   methods:{
     control(evt){
@@ -86,6 +98,21 @@ export default {
         {
             evt.preventDefault();
         }
+    },
+    addToCart(productId){
+      var strProductId = 'element' + productId
+      console.log(this.user.shoppingCartId)
+      axios.post("https://localhost:7185/api/CartItems",
+      {
+        Quantity : this.$refs[strProductId][0].value,
+        ProductId : productId,
+        ShoppingCartId : this.user.shoppingCartId,
+        TotalPrice:0
+      })
+      .then(response=>{
+        console.log(response)
+      })
+      .catch(e=> console.log(e))
     }
 }
 

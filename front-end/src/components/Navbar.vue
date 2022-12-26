@@ -24,7 +24,7 @@
               <router-link class="nav-link" to="/add-product" >Ürün Ekle</router-link>
             </li>
           </ul>
-          <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated">
+          <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated && userRole==1">
             <BIconCart4 @click="cartHandler()" />
           </div>
         </div>
@@ -33,17 +33,18 @@
 
 <script>
 import { BIconCart4} from 'bootstrap-icons-vue';
-
+import axios from 'axios';
 export default{
   data(){
     return{
-
+      user:{}
     }
   },
   props:{
     isAuthenticated:Boolean,
     isCartOpen:Boolean,
-    userRole:Number
+    userRole:Number,
+    userId: Number
   },
   components:{
     BIconCart4,
@@ -51,7 +52,7 @@ export default{
   methods:{
     cartHandler(){
       console.log(this.userRole)
-      //this.$emit("handleCart"); 
+      this.$emit("handleCart"); 
     }
   }
 
