@@ -49,5 +49,11 @@ namespace markettoptanci.Business.Concrete
         {
             return _shoppingCartRepository.UpdateShoppingCart(shoppingCart);
         }
+
+        public ShoppingCart AddCartItem(CartItem cartItem)
+        {
+            return _shoppingCartRepository.AddCartItem(cartItem);
+        }
+
     }
 }

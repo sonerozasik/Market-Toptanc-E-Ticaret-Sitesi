@@ -49,5 +49,11 @@ namespace markettoptanci.Business.Concrete
         {
             return _groceryStoreUserRepository.UpdateGroceryStoreUser(groceryStoreUser);
         }
+
+        public GroceryStoreUser GetGroceryStoreUserByUserId(int userId)
+        {
+            return _groceryStoreUserRepository.GetGroceryStoreUserByUserId(userId);
+        }
+
     }
 }

@@ -56,5 +56,13 @@ namespace markettoptanci.DataAccess.Concrete
                 return groceryStoreUser;
             }
         }
+
+        public GroceryStoreUser GetGroceryStoreUserByUserId(int userId)
+        {
+            using (var GroceryStoreUserDbContext = new UserDbContext())
+            {
+                return GroceryStoreUserDbContext.GroceryStoreUsers.FirstOrDefault(u => u.UserId == userId);
+            }
+        }
     }
 }

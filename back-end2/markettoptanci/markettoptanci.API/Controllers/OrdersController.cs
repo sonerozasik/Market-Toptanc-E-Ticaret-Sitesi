@@ -46,6 +46,18 @@ namespace markettoptanci.API.Controllers
         {
             return _orderService.DeleteOrder(id);
         }
+
+        [HttpGet("byGsId/{id}")]
+        public List<Order> GetOrdersByGroceryStoreUserId(int id)
+        {
+            return _orderService.GetOrdersByGroceryStoreUserId(id);
+        }
+
+        [HttpGet("byWsId/{id}")]
+        public List<Order> GetOrdersByWholeSalerUserId(int id)
+        {
+            return _orderService.GetOrdersByWholeSalerUserId(id);
+        }
     }
 }
 

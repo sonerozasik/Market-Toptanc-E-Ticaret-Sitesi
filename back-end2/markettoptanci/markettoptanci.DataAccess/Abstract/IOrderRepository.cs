@@ -17,6 +17,13 @@ namespace markettoptanci.DataAccess.Abstract
 
         Order UpdateOrder(Order order);
 
-        Order DeleteOrder(int id);   
+        Order DeleteOrder(int id);
+
+        List<Order> GetOrdersByGroceryStoreUserId(int groceryStoreUserId);
+
+        List<Order> GetOrdersByWholeSalerUserId(int wholeSalerUserId);
+
+
+
     }
 }

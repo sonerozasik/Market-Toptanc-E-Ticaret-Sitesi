@@ -11,11 +11,12 @@ namespace markettoptanci.Entities
     {
         [Key]
         public int Id { get; set; }
-        public ICollection<CartItem>? CartItems { get; set; }
+        public List<CartItem> CartItems   { get; set; }
         public GroceryStoreUser GroceryStoreUser { get; set; }
-        public double TotalPrice
+        public double? TotalPrice
         {
-            get { return TotalPrice; }
+            get; set;
+            /*get { return TotalPrice; }
             set
             {
                 TotalPrice = 0;
@@ -23,7 +24,12 @@ namespace markettoptanci.Entities
                 {
                     TotalPrice += orderItem.TotalPrice;
                 }
-            }
+            }*/
+        }
+
+        public ShoppingCart()
+        {
+            CartItems = new List<CartItem>();
         }
     }
 }

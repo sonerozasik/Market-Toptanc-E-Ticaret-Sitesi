@@ -18,5 +18,8 @@ namespace markettoptanci.Business.Abstract
         GroceryStoreUser UpdateGroceryStoreUser(GroceryStoreUser groceryStoreUser);
 
         GroceryStoreUser DeleteGroceryStoreUser(int id);
+
+        GroceryStoreUser GetGroceryStoreUserByUserId(int userId);
+
     }
 }

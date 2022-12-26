@@ -46,6 +46,13 @@ namespace markettoptanci.API.Controllers
         {
             return _groceryStoreUserService.DeleteGroceryStoreUser(id);
         }
+
+        [HttpGet("getByUserId/{userId}")]
+        public GroceryStoreUser GetGroceryStoreUserByUserId(int userId)
+        {
+            return _groceryStoreUserService.GetGroceryStoreUserByUserId(userId);
+        }
+
     }
 }
 

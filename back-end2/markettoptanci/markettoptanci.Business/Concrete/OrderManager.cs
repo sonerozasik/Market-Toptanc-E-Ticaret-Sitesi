@@ -49,5 +49,16 @@ namespace markettoptanci.Business.Concrete
         {
             return _orderRepository.UpdateOrder(order);
         }
+
+
+        public List<Order> GetOrdersByGroceryStoreUserId(int groceryStoreUserId)
+        {
+            return _orderRepository.GetOrdersByGroceryStoreUserId(groceryStoreUserId);
+        }
+
+        public List<Order> GetOrdersByWholeSalerUserId(int wholeSalerUserId)
+        {
+            return _orderRepository.GetOrdersByWholeSalerUserId(wholeSalerUserId);
+        }
     }
 }

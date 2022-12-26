@@ -49,5 +49,12 @@ namespace markettoptanci.API.Controllers
         {
             return _shoppingCartService.DeleteShoppingCart(id);
         }
+
+        [HttpPost("addItem")]
+        public ShoppingCart AddCartItem([FromBody] CartItem cartItem)
+        {
+            return _shoppingCartService.AddCartItem(cartItem);
+        }
+
     }
 }

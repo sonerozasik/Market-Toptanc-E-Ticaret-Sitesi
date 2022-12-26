@@ -19,7 +19,7 @@ namespace markettoptanci.Entities
         public User? User { get; set; }
         public string CompanyName { get; set; }
         //public ICollection<Product>? Products { get; set; }
-        public ICollection<Order>? Orders { get; set; }
-        public ICollection<Return>? Returns { get; set; }
+        //public ICollection<Order>? Orders { get; set; }
+        //public ICollection<Return>? Returns { get; set; }
     }
 }

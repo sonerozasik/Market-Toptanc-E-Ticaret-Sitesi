@@ -18,5 +18,8 @@ namespace markettoptanci.Business.Abstract
         ShoppingCart UpdateShoppingCart(ShoppingCart shoppingCart);
 
         ShoppingCart DeleteShoppingCart(int id);
+
+        ShoppingCart AddCartItem(CartItem cartItem);
+
     }
 }

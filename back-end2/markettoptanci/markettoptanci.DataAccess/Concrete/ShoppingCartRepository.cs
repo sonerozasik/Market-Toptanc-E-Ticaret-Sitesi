@@ -35,7 +35,13 @@ namespace markettoptanci.DataAccess.Concrete
         {
             using (var shoppingCartDbContext = new UserDbContext())
             {
-                return shoppingCartDbContext.ShoppingCarts.Find(id);
+                ShoppingCart shoppingCart = shoppingCartDbContext.ShoppingCarts.Find(id);
+                shoppingCart.CartItems = shoppingCartDbContext.CartItems.Where(ci => ci.ShoppingCartId == id).ToList();
+                foreach(var cartItem in shoppingCart.CartItems)
+                {
+                    cartItem.Product = shoppingCartDbContext.Products.Find(cartItem.ProductId);
+                }
+                return shoppingCart;
             }
         }
 
@@ -54,6 +60,20 @@ namespace markettoptanci.DataAccess.Concrete
                 shoppingCartDbContext.ShoppingCarts.Update(shoppingCart);
                 shoppingCartDbContext.SaveChanges();
                 return shoppingCart;
+            }
+        }
+
+        //todo not necessery
+        public ShoppingCart AddCartItem(CartItem cartItem)
+        {
+            using (var shoppingCartDbContext = new UserDbContext())
+            {
+                ShoppingCart cart = new ShoppingCart();
+                cart = shoppingCartDbContext.ShoppingCarts.Find(cartItem.ShoppingCartId);
+                cart.CartItems.Add(cartItem);
+                shoppingCartDbContext.CartItems.Add(cartItem);
+                shoppingCartDbContext.SaveChanges();
+                return cart;
             }
         }
     }

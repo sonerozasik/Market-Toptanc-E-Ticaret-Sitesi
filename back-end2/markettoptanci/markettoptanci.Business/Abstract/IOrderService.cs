@@ -18,5 +18,9 @@ namespace markettoptanci.Business.Abstract
         Order UpdateOrder(Order order);
 
         Order DeleteOrder(int id);
+
+        List<Order> GetOrdersByGroceryStoreUserId(int groceryStoreUserId);
+
+        List<Order> GetOrdersByWholeSalerUserId(int wholeSalerUserId);
     }
 }

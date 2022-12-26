@@ -17,8 +17,8 @@ namespace markettoptanci.Entities
         [ForeignKey("User")]
         public int UserId { get; set; }
         public string StoreName { get; set; }
-        public ICollection<Order>? Orders { get; set; }
-        public ICollection<Return>? Returns { get; set; }
+        //public ICollection<Order>? Orders { get; set; }
+        //public ICollection<Return>? Returns { get; set; }
 
         [ForeignKey("ShoppingCart")]
         public int? ShoppingCartId { get; set; }

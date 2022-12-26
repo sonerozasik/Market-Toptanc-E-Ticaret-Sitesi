@@ -56,5 +56,44 @@ namespace markettoptanci.DataAccess.Concrete
                 return order;
             }
         }
+
+        public List<Order> GetOrdersByGroceryStoreUserId(int groceryStoreUserId)
+        {
+            using (var orderDbContext = new UserDbContext())
+            {
+                List<Order> orders = orderDbContext.Orders.Where(o => o.GroceryStoreUserId == groceryStoreUserId).ToList();
+                foreach(var order in orders)
+                {
+                    order.OrderItems = orderDbContext.OrderItems.Where(o=>o.OrderId == order.Id).ToList();
+                    order.WholeSalerUser = orderDbContext.WholeSalerUsers.FirstOrDefault(w => w.Id == order.WholeSalerUserId);
+
+                    foreach (var orderItem in order.OrderItems)
+                    {
+                        orderItem.Product = orderDbContext.Products.FirstOrDefault(p=>p.Id == orderItem.ProductId);
+                    }
+                }
+                return orders;
+            }
+        }
+
+        public List<Order> GetOrdersByWholeSalerUserId(int wholeSalerUserId)
+        {
+            using (var orderDbContext = new UserDbContext())
+            {
+                List<Order> orders = orderDbContext.Orders.Where(o => o.WholeSalerUserId == wholeSalerUserId).ToList();
+
+                foreach (var order in orders)
+                {
+                    order.OrderItems = orderDbContext.OrderItems.Where(o => o.OrderId == order.Id).ToList();
+                    order.GroceryStoreUser = orderDbContext.GroceryStoreUsers.FirstOrDefault(g => g.Id == order.GroceryStoreUserId);
+
+                    foreach (var orderItem in order.OrderItems)
+                    {
+                        orderItem.Product = orderDbContext.Products.FirstOrDefault(p => p.Id == orderItem.ProductId);
+                    }
+                }
+                return orders;
+            }
+        }
     }
 }
