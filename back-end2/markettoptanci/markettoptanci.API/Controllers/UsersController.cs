@@ -1,7 +1,6 @@
 ﻿using markettoptanci.Business.Abstract;
 using markettoptanci.Business.Concrete;
 using markettoptanci.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace markettoptanci.API.Controllers
@@ -18,15 +17,25 @@ namespace markettoptanci.API.Controllers
 
 
         [HttpGet]
-        public List<User> GetAllUsers()
+        public ActionResult<List<User>>  GetAllUsers()
         {
-            return _userService.GetAllUsers();
+            List<User> users = _userService.GetAllUsers();
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return users;
         }
 
         [HttpGet("{id}")]
-        public User GetUserById(int id)
+        public ActionResult<User> GetUserById(int id)
         {
-            return _userService.GetUserById(id);
+            User user = _userService.GetUserById(id);
+            if(user== null)
+            {
+                return NotFound();
+            }
+            return user;
         }
 
         [HttpPost]

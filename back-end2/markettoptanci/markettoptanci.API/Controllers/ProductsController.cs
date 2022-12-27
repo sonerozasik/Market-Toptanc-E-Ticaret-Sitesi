@@ -1,6 +1,7 @@
 ﻿using markettoptanci.Business.Abstract;
 using markettoptanci.Business.Concrete;
 using markettoptanci.Entities;
+using markettoptanci.Entities.Modals;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,25 @@ namespace markettoptanci.API.Controllers
         public Product DeleteProduct(int id)
         {
             return _productService.DeleteProduct(id);
+        }
+
+        [HttpPost("listOfProducts")]
+        public List<Product> AddListOfProduct([FromBody] List<ProductWithStock> productList)
+        {
+            return _productService.AddListOfProduct(productList);
+        }
+
+        [HttpGet("byWSUId/{wholeSalerUserId}")]
+
+        public List<Product> GetProductsByWholeSalerUserId(int wholeSalerUserId)
+        {
+            return _productService.GetProductsByWholeSalerUserId(wholeSalerUserId);
+        }
+
+        [HttpGet("filter/{productName}/{minPrice}/{maxPrice}/{wholeSalerUserName}/{category}")]
+        public List<Product> GetProductsFiltered(string productName, int minPrice, int maxPrice, string wholeSalerUserName, int category)
+        {
+            return _productService.GetProductsFiltered(productName, minPrice, maxPrice, wholeSalerUserName, category);
         }
     }
 }

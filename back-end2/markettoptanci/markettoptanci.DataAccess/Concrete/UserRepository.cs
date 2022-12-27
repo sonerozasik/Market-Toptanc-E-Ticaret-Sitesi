@@ -42,10 +42,18 @@ namespace markettoptanci.DataAccess.Concrete
 
         public List<User> GetAllUsers()
         {
-            using(var userDbContext = new UserDbContext())
+            try
             {
-                return userDbContext.Users.ToList();
+                using (var userDbContext = new UserDbContext())
+                {
+                    return userDbContext.Users.ToList();
+                }
             }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            
         }
 
         public User UpdateUser(User user)
