@@ -23,6 +23,9 @@
             <li class="nav-item" v-if="isAuthenticated && userRole==2">
               <router-link class="nav-link" to="/add-product" >Ürün Ekle</router-link>
             </li>
+            <li class="nav-item" v-if="isAuthenticated && userRole==2">
+              <router-link class="nav-link" to="/add-multiple-products" >Ürün Ekle(Excel)</router-link>
+            </li>
           </ul>
           <div class="navbar-nav ms-auto pe-5" v-if="isAuthenticated && userRole==1">
             <BIconCart4 @click="cartHandler()" />

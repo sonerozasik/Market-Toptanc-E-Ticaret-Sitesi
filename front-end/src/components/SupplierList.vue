@@ -12,9 +12,6 @@
             <th scope="row">{{ supplier.user.firstName }} {{supplier.user.lastName}}</th>
             <td>{{ supplier.companyName }}</td>
             <td>{{ supplier.user.city }}</td>
-            <div class="d-flex justify-content-end">
-                <button class="btn bg-primary text-white">Ürünleri Gör</button>
-            </div>
           </tr>
         </tbody>
       </table>

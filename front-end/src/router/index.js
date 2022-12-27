@@ -5,6 +5,8 @@ import SupplierList from '../components/SupplierList.vue'
 import ProductList from '../components/ProductList.vue'
 import OrderList from '../components/OrderList.vue'
 import AddProduct from '../components/AddProduct.vue'
+import AddProductWithExcel from '../components/AddProductWithExcel.vue'
+import MyProducts from '../components/MyProducts.vue'
 
 const routes = [
   {
@@ -36,6 +38,16 @@ const routes = [
     path: '/add-product',
     name: 'add-product',
     component : AddProduct
+  },
+  {
+    path: '/add-multiple-products',
+    name: 'add-multiple-products',
+    component : AddProductWithExcel
+  },
+  {
+    path: '/self-product-list',
+    name: 'self-product-list',
+    component : MyProducts
   }
 ]
 

@@ -8,6 +8,7 @@
       v-on:loginResponse="loginResponse($event)"
       v-on:signupResponse="signupResponse($event)"
       v-on:addProductResponse="addProductResponse($event)"
+      v-on:handleError="errorMessage($event)"
       :userId="userId"
       :userRole="userRole"
 
@@ -46,10 +47,11 @@ export default {
             this.isAuthenticated = true;
             this.username = response.username;
             this.succesMessage(response.message);
-            this.$router.push("/supplier-list");
             this.isAuthenticated=true;
             this.userRole = response.userRole;
             this.userId= response.userId;
+            if(this.userRole == 1) this.$router.push("/supplier-list");
+            else if(this.userRole == 2) this.$router.push("/order-list");
         }
         else {
             this.errorMessage(response.message);

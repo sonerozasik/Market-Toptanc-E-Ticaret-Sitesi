@@ -47,9 +47,10 @@ import axios from 'axios';
     name: 'ShoppingCart',
     data() {
       return {
-        cartItems: [
-        ],
-        total:0
+        cartItems: [],
+        total:0,
+        GSU:{},
+        WSU:{},
       };
     },
     props:{
@@ -80,6 +81,8 @@ import axios from 'axios';
                 console.log(response)
                 this.cartItems = response.data.cartItems;
                 this.total = response.data.totalPrice;
+                this.fetchWSU(response.data.cartItems[0].product.wholeSalerUserId)
+                this.fetchGSU()
               })
             })
         },
@@ -93,10 +96,11 @@ import axios from 'axios';
             TotalPrice:0
           })
           .then(response=>{
+            this.handleCart()
             console.log(response)
+            this.sendEmailToGSU(this.GSU.email,this.GSU.firstName+" "+this.GSU.lastName,response.data.id)
+            this.sendEmailToWSU(this.WSU.email,this.WSU.firstName+" "+this.WSU.lastName,response.data.id,this.GSU.firstName+" "+this.GSU.lastName)
             this.cartItems.forEach(element => {
-              console.log("aaaaaaaaa")
-              console.log(response.data.id)
               axios.post("https://localhost:7185/api/OrderItems",
               {
                 ProductId : element.productId,
@@ -112,7 +116,57 @@ import axios from 'axios';
             });
            
           })
+          .then(()=>this.renderContent())
           .catch(e=>console.log(e))
+
+        },
+        sendEmailToGSU(email,fullName,orderId){
+          var emailContent = orderId + " numaralı siparişiniz oluşturulmuştur.\n\nDetaylar için sitemizi ziyaret edebilirsiniz!\n\nİyi alışverişler,\nMarket Toptancı E-Ticaret Sitesi";
+          axios.post("https://localhost:7185/api/EmailSender/SendEmail",
+          {
+            recipientEmail : email,
+            recipientFullName : fullName,
+            content : emailContent
+          })
+          .then(response=>{
+            console.log(response);
+          })
+          .catch(e=>console.log(e));
+        },
+        sendEmailToWSU(email,fullName,orderId,fullNameUser){
+          var emailContent = fullNameUser + " tarafından " +orderId+ " numaralı sipariş oluşturuldu.\n\nDetaylar için sitemizi ziyaret edebilirsiniz!\n\n İyi Alışverişler,\nMarket Toptancı E-Ticaret Sitesi";
+          axios.post("https://localhost:7185/api/EmailSender/SendEmail",
+          {
+            recipientEmail : email,
+            recipientFullName : fullName,
+            content : emailContent
+          })
+          .then(response=>{
+            console.log(response);
+          })
+          .catch(e=>console.log(e));
+        },
+        fetchWSU(id){
+          axios.get("https://localhost:7185/api/WholeSalerUsers/"+id)
+          .then(response=>{
+            console.log(response)
+            axios.get("https://localhost:7185/api/Users/"+response.data.userId)
+            .then(response2=>{
+              console.log(response2)
+              this.WSU = response2.data;
+              console.log("WSU.id :" + this.WSU.id)
+
+          })
+          })
+        },
+        fetchGSU(){
+          console.log("GSU.id :" + this.userId)
+          axios.get("https://localhost:7185/api/Users/"+this.userId)
+          .then(response=>{
+            console.log(response)
+            this.GSU = response.data;
+            console.log("GSU.id :" + this.GSU.id)
+          })
         }
     },
     components:{

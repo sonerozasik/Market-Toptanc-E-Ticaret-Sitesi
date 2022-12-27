@@ -15,11 +15,11 @@
             </div>
             <div class="row">
               <div class="col">
-                <label for="exampleInputEmail1">E-mail</label>
-                <input type="email" class="form-control" id="email" v-model="email">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" v-model="email">
               </div>
               <div class="col">
-                <label for="exampleInputEmail1">Kullanıcı Adı</label>
+                <label for="username">Kullanıcı Adı</label>
                 <input type="text" class="form-control" id="username" v-model="username">
               </div>
             </div>

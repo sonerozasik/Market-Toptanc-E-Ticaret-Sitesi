@@ -3,7 +3,8 @@
       <thead>
         <tr >
           <th scope="col">Sipariş Numarası</th>
-          <th scope="col">Toptancı Adı</th>
+          <th v-if="userRole==1" scope="col">Toptancı Adı</th>
+          <th v-if="userRole==2" scope="col">Market Adı</th>
           <th scope="col">Teslimat Durumu</th>
           <th scope="col">Toplam Tutar</th>
         </tr>
